@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Usuarios\Commands\" />
+    <Folder Include="Features\Usuarios\DTOs\" />
+    <Folder Include="Features\Usuarios\Handlers\" />
+    <Folder Include="Features\Usuarios\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FaculdadeXPE.ECommerceOnline.Domain\FaculdadeXPE.ECommerceOnline.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
