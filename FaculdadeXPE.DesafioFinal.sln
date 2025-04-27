@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaculdadeXPE.ECommerceOnline.Api", "FaculdadeXPE.ECommerceOnline\FaculdadeXPE.ECommerceOnline.Api.csproj", "{959BCA22-3E16-4AA2-BA83-D6E513379CB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Api", "ECommerce.Api\ECommerce.Api.csproj", "{959BCA22-3E16-4AA2-BA83-D6E513379CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaculdadeXPE.ECommerceOnline.Domain", "FaculdadeXPE.ECommerceOnline.Domain\FaculdadeXPE.ECommerceOnline.Domain.csproj", "{0BD8428E-9B9B-4300-A257-55E38A94EA2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Domain", "ECommerce.Domain\ECommerce.Domain.csproj", "{0BD8428E-9B9B-4300-A257-55E38A94EA2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaculdadeXPE.ECommerceOnline.Infrastructure", "FaculdadeXPE.ECommerceOnline.Infrastructure\FaculdadeXPE.ECommerceOnline.Infrastructure.csproj", "{E00D6E6E-491B-4747-93E6-CDD6936508CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Infrastructure", "ECommerce.Infrastructure\ECommerce.Infrastructure.csproj", "{E00D6E6E-491B-4747-93E6-CDD6936508CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaculdadeXPE.ECommerceOnline.Application", "FaculdadeXPE.ECommerceOnline.Application\FaculdadeXPE.ECommerceOnline.Application.csproj", "{7B1CEE92-A420-4B98-8B91-B18A20E55A24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Application", "ECommerce.Application\ECommerce.Application.csproj", "{7B1CEE92-A420-4B98-8B91-B18A20E55A24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
