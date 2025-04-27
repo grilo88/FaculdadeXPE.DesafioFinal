@@ -6,12 +6,12 @@ namespace ECommerce.Application.Features.Clientes.Commands.Requests
     {
         public long Id { get; set; }
 
-        public string Nome { get; }
+        public string Nome { get; set; }
 
-        public long Cpf { get; }
+        public long Cpf { get; set; }
 
-        public long Telefone { get; }
+        public long Telefone { get; set; }
 
-        public string Endereco { get; }
+        public string Endereco { get; set; }
     }
 }
