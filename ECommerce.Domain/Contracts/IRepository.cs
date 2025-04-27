@@ -2,7 +2,7 @@
 {
     public interface IRepository<T> where T : Entity
     {
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(long id);
 
         Task<IEnumerable<T>> GetAllAsync();
 
@@ -10,7 +10,7 @@
 
         Task UpdateAsync(T entity);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(long id);
 
         Task<bool> SaveChangesAsync();
     }

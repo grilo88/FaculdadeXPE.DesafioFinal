@@ -1,20 +1,21 @@
 ﻿using ECommerce.Domain.Contracts;
+using ECommerce.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Persistence
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        private readonly DbContext _context;
+        public readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public Repository(DbContext context)
+        public Repository(AppDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(long id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -40,7 +41,7 @@ namespace ECommerce.Infrastructure.Persistence
             _dbSet.Update(entity);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(long id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity == null)

@@ -1,22 +1,17 @@
 ﻿using ECommerce.Application.Features.Clientes.Commands.Requests;
 using ECommerce.Domain.Aggregates.Clientes;
-using ECommerce.Domain.Contracts;
-using ECommerce.Domain.Repositories;
+using ECommerce.Domain.Services;
 using MediatR;
 
 namespace ECommerce.Application.Features.Clientes.Commands.Handlers
 {
-    public class CreateClienteCommandHandler : 
-        IRequestHandler<CreateClienteCommandRequest, bool>
+    public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommandRequest, bool>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IClienteRepository _clienteRepository;
+        private readonly IClienteService _clienteService;  
 
-        public CreateClienteCommandHandler(IUnitOfWork unitOfWork,
-                                           IClienteRepository clienteRepository)
+        public CreateClienteCommandHandler(IClienteService clienteService)
         {
-            _unitOfWork = unitOfWork;
-            _clienteRepository = clienteRepository;
+            _clienteService = clienteService;
         }
 
         public async Task<bool> Handle(CreateClienteCommandRequest request, CancellationToken cancellationToken)
@@ -26,10 +21,9 @@ namespace ECommerce.Application.Features.Clientes.Commands.Handlers
                                             request.Endereco,
                                             request.Telefone);
 
-            await _clienteRepository.AddAsync(cliente);
-            await _unitOfWork.CommitAsync(); 
+            var result = await _clienteService.CreateClienteAsync(cliente);
 
-            return true;
+            return result;
         }
     }
 }

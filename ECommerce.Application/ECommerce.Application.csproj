@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Usuarios\Commands\" />
-    <Folder Include="Features\Usuarios\DTOs\" />
-    <Folder Include="Features\Usuarios\Handlers\" />
-    <Folder Include="Features\Usuarios\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.5.0" />
   </ItemGroup>
 

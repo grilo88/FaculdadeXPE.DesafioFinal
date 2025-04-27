@@ -1,5 +1,4 @@
-﻿using ECommerce.Domain.Aggregates.Usuarios;
-using ECommerce.Domain.Contracts;
+﻿using ECommerce.Domain.Contracts;
 
 namespace ECommerce.Domain.Aggregates.Clientes
 {
@@ -13,13 +12,21 @@ namespace ECommerce.Domain.Aggregates.Clientes
 
         public long Telefone { get; private set; }
 
-        public long UsuarioId { get; private set; }
-        
-        public UsuarioEntity Usuario { get; private set; } // Navegação para o UsuarioEntity
-
         protected ClienteEntity() { }
 
-        public ClienteEntity(string nome, long cpf, string endereco, long telefone)
+        public ClienteEntity(string nome, long cpf, string endereco, long telefone):
+            this(0, nome, cpf, endereco, telefone) { }
+
+        public ClienteEntity(long id, string nome, long cpf, string endereco, long telefone)
+        {
+            Id = id;
+            Nome = nome;
+            Cpf = cpf;
+            Endereco = endereco;
+            Telefone = telefone;
+        }
+
+        public void Atualizar(string nome, long cpf, string endereco, long telefone)
         {
             Nome = nome;
             Cpf = cpf;
@@ -34,7 +41,6 @@ namespace ECommerce.Domain.Aggregates.Clientes
                 return new ClienteEntity()
                 {
                     Id = id,
-                    UsuarioId = id,
                     Nome = nome,
                     Cpf = cpf,
                     Endereco = endereco

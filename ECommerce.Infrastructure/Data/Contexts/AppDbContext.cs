@@ -1,5 +1,4 @@
 ﻿using ECommerce.Domain.Aggregates.Clientes;
-using ECommerce.Domain.Aggregates.Usuarios;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure.Data.Configurations;
 using ECommerce.Infrastructure.Data.Seeds;
@@ -19,18 +18,14 @@ namespace ECommerce.Infrastructure.Data.Contexts
         {
         }
 
-        public DbSet<UsuarioEntity> Usuario { get; set; }
-
         public DbSet<ClienteEntity> Cliente { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
 
-            UsuarioSeed.Seed(modelBuilder);
             ClienteSeed.Seed(modelBuilder);
         }
     }

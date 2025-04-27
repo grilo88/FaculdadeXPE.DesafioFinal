@@ -19,9 +19,6 @@ namespace ECommerce.Infrastructure.Data.Configurations
                 .HasColumnName("id")
                 .IsRequired();
 
-            builder.Property(c => c.UsuarioId)
-                .HasColumnName("usuario_id");
-
             builder.Property(c => c.Nome)
                 .HasColumnName("Nome")
                 .IsRequired()
@@ -41,12 +38,6 @@ namespace ECommerce.Infrastructure.Data.Configurations
                 .HasMaxLength(15);
 
             builder.HasIndex(c => c.Cpf).IsUnique();
-
-            // Relacionamento com UsuarioEntity
-            builder.HasOne(c => c.Usuario)
-                .WithMany() // Ou .WithOne() se for um relacionamento 1-1
-                .HasForeignKey(c => c.UsuarioId) // Chave estrangeira
-                .OnDelete(DeleteBehavior.Restrict); // Configuração de comportamento em caso de exclusão
         }
     }
 }

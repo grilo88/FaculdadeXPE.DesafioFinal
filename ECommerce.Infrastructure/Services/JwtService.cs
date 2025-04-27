@@ -1,6 +1,6 @@
 ﻿namespace ECommerce.Infrastructure.Services
 {
-    internal class JwtService
+    public class JwtService
     {
     }
 }

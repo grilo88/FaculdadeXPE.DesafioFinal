@@ -1,6 +1,14 @@
-﻿namespace ECommerce.Application.Features.Clientes.Commands.Requests
+﻿using MediatR;
+
+namespace ECommerce.Application.Features.Clientes.Commands.Requests
 {
-    internal class DeleteClienteCommandRequest
+    public class DeleteClienteCommandRequest : IRequest<bool>
     {
+        public long Id { get; }
+
+        public DeleteClienteCommandRequest(long id)
+        {
+            Id = id;
+        }
     }
 }
