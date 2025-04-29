@@ -14,6 +14,11 @@ namespace ECommerce.Domain.Aggregates.Produtos
 
         protected ProdutoEntity() { }
 
+        public ProdutoEntity(long id)
+        {
+            Id = id;
+        }
+
         public ProdutoEntity(string nome, string descricao, decimal preco, int estoque)
             : this(0, nome, descricao, preco, estoque) { }
 

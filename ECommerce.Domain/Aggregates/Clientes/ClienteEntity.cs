@@ -4,6 +4,8 @@ namespace ECommerce.Domain.Aggregates.Clientes
 {
     public class ClienteEntity : Entity, IAggregateRoot
     {
+        public long Id { get; private set; }
+
         public string Nome { get; private set; }
 
         public long Cpf { get; private set; }

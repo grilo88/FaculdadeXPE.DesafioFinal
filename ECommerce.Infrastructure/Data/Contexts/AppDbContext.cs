@@ -29,9 +29,12 @@ namespace ECommerce.Infrastructure.Data.Contexts
 
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
 
             ClienteSeed.Seed(modelBuilder);
             ProdutoSeed.Seed(modelBuilder);
+            PedidoSeed.Seed(modelBuilder);
         }
     }
 }
