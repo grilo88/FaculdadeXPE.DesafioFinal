@@ -12,7 +12,7 @@ namespace ECommerce.Domain.Services
 
         Task<IEnumerable<ClienteEntity>> GetClienteByNameAsync(string nome);
 
-        Task<ClienteEntity> ObterClientePorIdAsync(long id);
+        Task<ClienteEntity> GetClienteByIdAsync(long id);
 
         Task<bool> UpdateClienteAsync(ClienteEntity cliente);
     }

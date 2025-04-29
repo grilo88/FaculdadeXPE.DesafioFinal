@@ -71,7 +71,7 @@ namespace ECommerce.Application.Features.Clientes.Services
             return await _clienteRepository.GetAllAsync();
         }
 
-        public async Task<ClienteEntity> ObterClientePorIdAsync(long id)
+        public async Task<ClienteEntity> GetClienteByIdAsync(long id)
         {
             return await _clienteRepository.GetByIdAsync(id);
         }

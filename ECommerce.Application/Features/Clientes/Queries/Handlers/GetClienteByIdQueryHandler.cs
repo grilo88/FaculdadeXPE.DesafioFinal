@@ -17,7 +17,7 @@ namespace ECommerce.Application.Features.Clientes.Queries.Handlers
 
         public async Task<GetClienteByIdQueryResponse?> Handle(GetClienteByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var cliente = await _clienteService.ObterClientePorIdAsync(request.Id);
+            var cliente = await _clienteService.GetClienteByIdAsync(request.Id);
 
             if (cliente == null)
                 return null;
