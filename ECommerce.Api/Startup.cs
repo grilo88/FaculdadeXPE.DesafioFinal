@@ -3,7 +3,13 @@ using ECommerce.Application.Features.Clientes.Commands.Requests;
 using ECommerce.Application.Features.Clientes.Queries.Handlers;
 using ECommerce.Application.Features.Clientes.Queries.Requests;
 using ECommerce.Application.Features.Clientes.Queries.Responses;
+using ECommerce.Application.Features.Produtos.Commands.Handlers;
+using ECommerce.Application.Features.Produtos.Commands.Requests;
+using ECommerce.Application.Features.Produtos.Queries.Handlers;
+using ECommerce.Application.Features.Produtos.Queries.Requests;
+using ECommerce.Application.Features.Produtos.Queries.Responses;
 using ECommerce.Application.Features.Clientes.Services;
+using ECommerce.Application.Features.Produtos.Services;
 using ECommerce.Domain.Repositories;
 using ECommerce.Domain.Services;
 using ECommerce.Infrastructure.IoC;
@@ -35,13 +41,11 @@ namespace ECommerce.Api
                     Version = "v1",
                     Description = "Desafio Final - Arquiteto de Software - Faculdade XPE"
                 });
-
-                // Se você quiser incluir um arquivo XML de comentários para mais detalhes
-                // options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MinhaApi.xml"));
             });
 
             services.AddInfrastructureServices(Configuration);
 
+            // Cliente
             services.AddScoped<IRequestHandler<CreateClienteCommandRequest, bool>, CreateClienteCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteClienteCommandRequest, bool>, DeleteClienteCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateClienteCommandRequest, bool>, UpdateClienteCommandHandler>();
@@ -49,8 +53,19 @@ namespace ECommerce.Api
             services.AddScoped<IRequestHandler<GetClienteByIdQueryRequest, GetClienteByIdQueryResponse?>, GetClienteByIdQueryHandler>();
             services.AddScoped<IRequestHandler<GetClienteByNomeQueryRequest, IEnumerable<GetClienteByNomeQueryResponse>>, GetClienteByNomeQueryHandler>();
 
+            // Produto
+            services.AddScoped<IRequestHandler<CreateProdutoCommandRequest, bool>, CreateProdutoCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteProdutoCommandRequest, bool>, DeleteProdutoCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateProdutoCommandRequest, bool>, UpdateProdutoCommandHandler>();
+            services.AddScoped<IRequestHandler<GetAllProdutosQueryRequest, IEnumerable<GetAllProdutosQueryResponse>>, GetAllProdutosQueryHandler>();
+            services.AddScoped<IRequestHandler<GetProdutoByIdQueryRequest, GetProdutoByIdQueryResponse?>, GetProdutoByIdQueryHandler>();
+            services.AddScoped<IRequestHandler<GetProdutoByNomeQueryRequest, IEnumerable<GetProdutoByNomeQueryResponse>>, GetProdutoByNomeQueryHandler>();
+
+            // Serviços e repositórios
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -58,16 +73,15 @@ namespace ECommerce.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(); // <- Gera o swagger.json
+                app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "API Desafio Final V1");
-                    options.RoutePrefix = string.Empty; // Deixa o Swagger disponível na raiz da aplicação
+                    options.RoutePrefix = string.Empty;
                 });
             }
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
