@@ -3,7 +3,7 @@ using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Repositories;
 using ECommerce.Domain.Services;
 
-namespace ECommerce.Application.Features.Clientes.Services
+namespace ECommerce.Application.Services
 {
     public class ClienteService : IClienteService
     {

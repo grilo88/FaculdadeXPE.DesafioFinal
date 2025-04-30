@@ -3,13 +3,17 @@ using ECommerce.Application.Features.Clientes.Commands.Requests;
 using ECommerce.Application.Features.Clientes.Queries.Handlers;
 using ECommerce.Application.Features.Clientes.Queries.Requests;
 using ECommerce.Application.Features.Clientes.Queries.Responses;
+using ECommerce.Application.Features.Pedidos.Commands.Handlers;
+using ECommerce.Application.Features.Pedidos.Commands.Requests;
+using ECommerce.Application.Features.Pedidos.Queries.Handlers;
+using ECommerce.Application.Features.Pedidos.Queries.Requests;
+using ECommerce.Application.Features.Pedidos.Queries.Responses;
 using ECommerce.Application.Features.Produtos.Commands.Handlers;
 using ECommerce.Application.Features.Produtos.Commands.Requests;
 using ECommerce.Application.Features.Produtos.Queries.Handlers;
 using ECommerce.Application.Features.Produtos.Queries.Requests;
 using ECommerce.Application.Features.Produtos.Queries.Responses;
-using ECommerce.Application.Features.Clientes.Services;
-using ECommerce.Application.Features.Produtos.Services;
+using ECommerce.Application.Services;
 using ECommerce.Domain.Repositories;
 using ECommerce.Domain.Services;
 using ECommerce.Infrastructure.IoC;
@@ -41,6 +45,8 @@ namespace ECommerce.Api
                     Version = "v1",
                     Description = "Desafio Final - Arquiteto de Software - Faculdade XPE"
                 });
+
+                options.UseAllOfToExtendReferenceSchemas();
             });
 
             services.AddInfrastructureServices(Configuration);
@@ -61,11 +67,24 @@ namespace ECommerce.Api
             services.AddScoped<IRequestHandler<GetProdutoByIdQueryRequest, GetProdutoByIdQueryResponse?>, GetProdutoByIdQueryHandler>();
             services.AddScoped<IRequestHandler<GetProdutoByNomeQueryRequest, IEnumerable<GetProdutoByNomeQueryResponse>>, GetProdutoByNomeQueryHandler>();
 
-            // Serviços e repositórios
+            // Pedido
+            services.AddScoped<IRequestHandler<CreatePedidoCommandRequest, bool>, CreatePedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<DeletePedidoCommandRequest, bool>, DeletePedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdatePedidoCommandRequest, bool>, UpdatePedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<GetAllPedidosQueryRequest, IEnumerable<GetAllPedidosQueryResponse>>, GetAllPedidosQueryHandler>();
+            services.AddScoped<IRequestHandler<GetPedidoByIdQueryRequest, GetPedidoByIdQueryResponse?>, GetPedidoByIdQueryHandler>();
+            services.AddScoped<IRequestHandler<GetPedidosByClienteNomeQueryRequest, IEnumerable<GetPedidosByClienteNomeQueryResponse>>, GetPedidoByNomeQueryHandler>();
+            services.AddScoped<IRequestHandler<GetPedidosByStatusQueryRequest, IEnumerable<GetPedidosByStatusQueryResponse>>, GetPedidosByStatusQueryHandler>();
+
+            // Repositórios
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+
+            // Serviços
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IPedidoService, PedidoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

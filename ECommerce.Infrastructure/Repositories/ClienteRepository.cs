@@ -15,6 +15,7 @@ namespace ECommerce.Infrastructure.Repositories
         public async Task<IEnumerable<ClienteEntity>> GetByNomeAsync(string nome)
         {
             return await _context.Clientes
+               .AsNoTracking()
                .Where(c => EF.Functions.Like(c.Nome, $"%{nome}%"))
                .ToListAsync();
         }

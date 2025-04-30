@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ECommerce.Api.Controllers
 {
     [ApiController]
-    [Route("cliente")]
+    [Route("clientes")]
     public class ClienteController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -18,7 +18,7 @@ namespace ECommerce.Api.Controllers
             _mediator = mediator;
         }
 
-        // POST /cliente
+        // POST /clientes
         [HttpPost]
         [SwaggerOperation(Summary = "Cria um novo cliente", Description = "Cria um novo cliente no sistema.")]
         [SwaggerResponse(200, "Cliente criado com sucesso.", typeof(bool))]
@@ -43,7 +43,7 @@ namespace ECommerce.Api.Controllers
             }
         }
 
-        // DELETE /cliente/{id}
+        // DELETE /clientes/{id}
         [HttpDelete("{id}")]
         [SwaggerOperation(Summary = "Deleta um cliente", Description = "Deleta o cliente com o ID especificado.")]
         [SwaggerResponse(200, "Cliente deletado com sucesso.", typeof(bool))]
@@ -69,7 +69,7 @@ namespace ECommerce.Api.Controllers
             }
         }
 
-        // PUT /cliente/{id}
+        // PUT /clientes/{id}
         [HttpPut("{id}")]
         [SwaggerOperation(Summary = "Atualiza um cliente", Description = "Atualiza os dados de um cliente com o ID especificado.")]
         [SwaggerResponse(200, "Cliente atualizado com sucesso.", typeof(bool))]
@@ -96,7 +96,7 @@ namespace ECommerce.Api.Controllers
             }
         }
 
-        // GET /cliente
+        // GET /clientes
         [HttpGet]
         [SwaggerOperation(Summary = "Obtém todos os clientes", Description = "Obtém todos os clientes cadastrados.")]
         [SwaggerResponse(200, "Lista de clientes.", typeof(IEnumerable<GetAllClientesQueryResponse>))]
@@ -115,7 +115,7 @@ namespace ECommerce.Api.Controllers
             }
         }
 
-        // GET /cliente/{id}
+        // GET /clientes/{id}
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Obtém um cliente por ID", Description = "Obtém um cliente com o ID especificado.")]
         [SwaggerResponse(200, "Cliente encontrado.", typeof(GetClienteByIdQueryResponse))]
@@ -141,7 +141,7 @@ namespace ECommerce.Api.Controllers
             }
         }
 
-        // GET /cliente/pesquisar?nome={nome}
+        // GET /clientes/pesquisar?nome={nome}
         [HttpGet("pesquisar")]
         [SwaggerOperation(Summary = "Pesquisando cliente por nome", Description = "Pesquisando clientes com base no nome.")]
         [SwaggerResponse(200, "Lista de clientes encontrados.", typeof(IEnumerable<GetClienteByNomeQueryResponse>))]

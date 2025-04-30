@@ -6,7 +6,7 @@ namespace ECommerce.Domain.Aggregates.Pedidos
     public partial class PedidoEntity
     {
         // Classe interna para os itens do pedido
-        public class PedidoItem : Entity
+        public class PedidoItemEntity : Entity
         {
             public long PedidoId { get; private set; }
 
@@ -22,9 +22,9 @@ namespace ECommerce.Domain.Aggregates.Pedidos
 
             public decimal ValorTotal => Quantidade * PrecoUnitario;
 
-            protected PedidoItem() { }
+            protected PedidoItemEntity() { }
 
-            internal PedidoItem(PedidoEntity pedido, ProdutoEntity produto, int quantidade)
+            public PedidoItemEntity(PedidoEntity pedido, ProdutoEntity produto, int quantidade)
             {
                 Pedido = pedido;
                 PedidoId = pedido.Id;
@@ -32,6 +32,19 @@ namespace ECommerce.Domain.Aggregates.Pedidos
                 ProdutoId = produto.Id;
                 PrecoUnitario = produto.Preco;
                 Quantidade = quantidade;
+            }
+
+            public PedidoItemEntity(long id,
+                                    long pedidoId, 
+                                    long produtoId, 
+                                    int quantidade, 
+                                    decimal precoUnitario)
+            {
+                Id = id;
+                PedidoId = pedidoId;
+                ProdutoId = produtoId;
+                Quantidade = quantidade;
+                PrecoUnitario = precoUnitario;
             }
 
             internal void AdicionarQuantidade(int quantidade)

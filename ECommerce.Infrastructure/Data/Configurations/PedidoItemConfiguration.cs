@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ECommerce.Infrastructure.Data.Configurations
 {
-    public class PedidoItemConfiguration : IEntityTypeConfiguration<PedidoEntity.PedidoItem>
+    public class PedidoItemConfiguration : IEntityTypeConfiguration<PedidoEntity.PedidoItemEntity>
     {
-        public void Configure(EntityTypeBuilder<PedidoEntity.PedidoItem> builder)
+        public void Configure(EntityTypeBuilder<PedidoEntity.PedidoItemEntity> builder)
         {
             // Tabela
             builder.ToTable("pedido_item");
 
-            // Chave primária composta
-            builder.HasKey(i => new { i.PedidoId, i.Id });
+            // Chave primária
+            builder.HasKey(i => i.Id);
 
             // Propriedades
             builder.Property(i => i.Id)
@@ -41,6 +41,12 @@ namespace ECommerce.Infrastructure.Data.Configurations
                 .WithMany()
                 .HasForeignKey(i => i.ProdutoId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Relacionamento com Pedido
+            builder.HasOne(i => i.Pedido)
+                .WithMany(p => p.Itens)
+                .HasForeignKey(i => i.PedidoId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Índices
             builder.HasIndex(i => i.ProdutoId);

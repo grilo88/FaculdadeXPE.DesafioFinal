@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ECommerce.Api.Controllers
 {
     [ApiController]
-    [Route("produto")]
+    [Route("produtos")]
     public class ProdutoController : ControllerBase
     {
         private readonly IMediator _mediator;

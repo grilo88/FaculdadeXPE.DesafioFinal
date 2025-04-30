@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Aggregates.Clientes;
+using ECommerce.Domain.Aggregates.Pedidos;
 using ECommerce.Domain.Aggregates.Produtos;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure.Data.Configurations;
@@ -22,6 +23,8 @@ namespace ECommerce.Infrastructure.Data.Contexts
         public DbSet<ClienteEntity> Clientes { get; set; }
 
         public DbSet<ProdutoEntity> Produtos { get; set; }
+
+        public DbSet<PedidoEntity> Pedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -18,8 +18,8 @@ namespace ECommerce.Infrastructure.Data.Configurations
                 .IsRequired();
 
             // Propriedades
-            builder.Property(p => p.DataPedido)
-                .HasColumnName("data_pedido")
+            builder.Property(p => p.DataCriado)
+                .HasColumnName("data_criado")
                 .IsRequired();
 
             builder.Property(p => p.Status)
@@ -50,7 +50,7 @@ namespace ECommerce.Infrastructure.Data.Configurations
 
             // Índices
             builder.HasIndex(p => p.ClienteId);
-            builder.HasIndex(p => p.DataPedido);
+            builder.HasIndex(p => p.DataCriado);
             builder.HasIndex(p => p.Status);
         }
     }

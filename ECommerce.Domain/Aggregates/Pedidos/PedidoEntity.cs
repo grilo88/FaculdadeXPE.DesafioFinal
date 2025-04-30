@@ -7,10 +7,6 @@ namespace ECommerce.Domain.Aggregates.Pedidos
     public partial class PedidoEntity : Entity, IAggregateRoot
     {
         // Propriedades básicas
-        public long Id { get; private set; }
-
-        public DateTime DataPedido { get; private set; }
-
         public string Status { get; private set; }
 
         public decimal ValorTotal { get; private set; }
@@ -21,9 +17,11 @@ namespace ECommerce.Domain.Aggregates.Pedidos
         public ClienteEntity Cliente { get; private set; }
 
         // Itens do pedido
-        private readonly List<PedidoItem> _itens = new List<PedidoItem>();
+        private readonly List<PedidoItemEntity> _itens = new List<PedidoItemEntity>();
 
-        public IReadOnlyCollection<PedidoItem> Itens => _itens.AsReadOnly();
+        public IReadOnlyCollection<PedidoItemEntity> Itens => _itens.AsReadOnly();
+
+        public DateTime DataCriado { get; private set; }
 
         protected PedidoEntity() { }
 
@@ -31,12 +29,12 @@ namespace ECommerce.Domain.Aggregates.Pedidos
         public PedidoEntity(long id, long clienteId, string status)
             : this(id, clienteId, status, DateTime.UtcNow) { }
 
-        public PedidoEntity(long id, long clienteId, string status, DateTime dataPedido)
+        public PedidoEntity(long id, long clienteId, string status, DateTime dataCriado)
         {
             Id = id;
             ClienteId = clienteId;
             Status = status;
-            DataPedido = dataPedido;
+            DataCriado = dataCriado;
             ValorTotal = 0;
         }
 
@@ -51,16 +49,16 @@ namespace ECommerce.Domain.Aggregates.Pedidos
             }
             else
             {
-                var novoItem = new PedidoItem(this, produto, quantidade);
+                var novoItem = new PedidoItemEntity(this, produto, quantidade);
                 _itens.Add(novoItem);
             }
 
             CalcularValorTotal();
         }
 
-        public void RemoverItem(ProdutoEntity produto, int quantidade)
+        public void RemoverItem(long produtoId, int quantidade)
         {
-            var item = _itens.FirstOrDefault(i => i.ProdutoId == produto.Id);
+            var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
 
             if (item != null)
             {
@@ -85,20 +83,25 @@ namespace ECommerce.Domain.Aggregates.Pedidos
             ValorTotal = _itens.Sum(i => i.ValorTotal);
         }
 
-        // Factory para seeds (opcional)
-        public static class Factory
+        public void DefinirItens(IEnumerable<PedidoItemEntity> itens)
         {
-            public static PedidoEntity CreateSeed(long id, ClienteEntity cliente, string status, DateTime dataPedido)
+            _itens.Clear(); 
+            foreach (var item in itens)
             {
-                return new PedidoEntity()
-                {
-                    Id = id,
-                    Cliente = cliente,
-                    ClienteId = cliente.Id,
-                    Status = status,
-                    DataPedido = dataPedido
-                };
+                _itens.Add(item);
             }
+
+            CalcularValorTotal();
+        }
+
+        public void Atualizar(long clienteId,
+                              string status,
+                              List<PedidoItemEntity> itensValidados)
+        {
+            ClienteId = clienteId;
+            Status = status;
+
+            DefinirItens(itensValidados);
         }
     }
 }

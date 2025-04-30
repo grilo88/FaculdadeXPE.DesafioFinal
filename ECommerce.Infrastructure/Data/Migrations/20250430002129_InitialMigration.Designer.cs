@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250429135412_TabelasPedido")]
-    partial class TabelasPedido
+    [Migration("20250430002129_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,9 +86,9 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("cliente_id");
 
-                    b.Property<DateTime>("DataPedido")
+                    b.Property<DateTime>("DataCriado")
                         .HasColumnType("TEXT")
-                        .HasColumnName("data_pedido");
+                        .HasColumnName("data_criado");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -104,7 +104,7 @@ namespace ECommerce.Infrastructure.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("DataPedido");
+                    b.HasIndex("DataCriado");
 
                     b.HasIndex("Status");
 
@@ -115,7 +115,7 @@ namespace ECommerce.Infrastructure.Migrations
                         {
                             Id = 1L,
                             ClienteId = 1L,
-                            DataPedido = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriado = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "Aguardando Pagamento",
                             ValorTotal = 0m
                         },
@@ -123,25 +123,22 @@ namespace ECommerce.Infrastructure.Migrations
                         {
                             Id = 2L,
                             ClienteId = 2L,
-                            DataPedido = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriado = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "Enviado",
                             ValorTotal = 0m
                         });
                 });
 
-            modelBuilder.Entity("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity+PedidoItem", b =>
+            modelBuilder.Entity("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity+PedidoItemEntity", b =>
                 {
-                    b.Property<long>("PedidoId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("pedido_id");
-
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("id");
 
-                    b.Property<long>("PedidoId1")
-                        .HasColumnType("INTEGER");
+                    b.Property<long>("PedidoId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("pedido_id");
 
                     b.Property<decimal>("PrecoUnitario")
                         .HasColumnType("decimal(18,2)")
@@ -155,13 +152,31 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("quantidade");
 
-                    b.HasKey("PedidoId", "Id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PedidoId1");
+                    b.HasIndex("PedidoId");
 
                     b.HasIndex("ProdutoId");
 
                     b.ToTable("pedido_item", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            PedidoId = 1L,
+                            PrecoUnitario = 33.4m,
+                            ProdutoId = 1L,
+                            Quantidade = 5
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            PedidoId = 2L,
+                            PrecoUnitario = 43.67m,
+                            ProdutoId = 2L,
+                            Quantidade = 20
+                        });
                 });
 
             modelBuilder.Entity("ECommerce.Domain.Aggregates.Produtos.ProdutoEntity", b =>
@@ -225,17 +240,11 @@ namespace ECommerce.Infrastructure.Migrations
                     b.Navigation("Cliente");
                 });
 
-            modelBuilder.Entity("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity+PedidoItem", b =>
+            modelBuilder.Entity("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity+PedidoItemEntity", b =>
                 {
-                    b.HasOne("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity", null)
+                    b.HasOne("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity", "Pedido")
                         .WithMany("Itens")
                         .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Domain.Aggregates.Pedidos.PedidoEntity", "Pedido")
-                        .WithMany()
-                        .HasForeignKey("PedidoId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
