@@ -4,8 +4,9 @@
 **Universidade: Faculdade XP Educação**  
 **Curso: Pós-Graduação em Arquitetura de Software e Soluções**  
 **Disciplina: Arquitetura de Software**  
-**Aluno:** Guilherme Moreira de Alencar Alves  
-**Data:** 29/04/2025
+**Aluno: Guilherme Moreira de Alencar Alves**  
+**Data: 29/04/2025**  
+**Repo: https://github.com/grilo88/FaculdadeXPE.DesafioFinal/tree/master**
 
 ---
 
