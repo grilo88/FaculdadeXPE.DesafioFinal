@@ -54,6 +54,12 @@ A arquitetura do sistema é composta pelas seguintes camadas:
 - **ECommerce.Domain**: Representa as entidades e contratos do sistema, incluindo agregados e repositórios.
 - **ECommerce.Infrastructure**: Contém a implementação das infraestruturas necessárias para a persistência de dados e injeção de dependências.
 
+### Camada Application
+
+#### Componentes Service
+
+![ClassDiagram](https://github.com/user-attachments/assets/e7b9bcb3-2ac6-4b5f-b8f6-4e2017dbd3b7)
+
 ### Camada Domain
 
 ![ClassDiagram](https://github.com/user-attachments/assets/945178b7-1baa-47b4-bad8-e3c8b9738cc9)
