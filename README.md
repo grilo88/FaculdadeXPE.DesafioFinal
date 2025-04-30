@@ -117,6 +117,18 @@ A camada **ECommerce.Application** contém as regras de negócio e a organizaç�
   - **GetProdutoByIdQueryHandler.cs**: Retorna um produto pelo ID.
   - **GetProdutoByNomeQueryHandler.cs**: Retorna um produto pelo nome.
 
+#### **Arquivos de Serviços**
+
+Os **Serviços** da camada **Application** fornecem operações para trabalhar com as entidades de **Cliente**, **Pedido** e **Produto**. Eles são responsáveis por coordenar as ações entre os controladores da **API** e as entidades da camada **Domain**, garantindo que as regras de negócio sejam aplicadas corretamente.
+
+- **ClienteService.cs**: Contém a lógica de aplicação relacionada ao cliente. Este serviço pode incluir funcionalidades como criar, atualizar, excluir e buscar clientes, coordenando a comunicação entre os controladores e os repositórios para manipulação da entidade **Cliente**.
+
+- **PedidoService.cs**: Responsável pela lógica de aplicação relacionada aos pedidos. Este serviço trata da criação, atualização, exclusão e recuperação de pedidos, interagindo com a camada de **Domain** para garantir que as regras de negócio do **Pedido** sejam aplicadas corretamente.
+
+- **ProdutoService.cs**: Contém a lógica de aplicação para o produto. Ele facilita operações como criação, atualização, exclusão e consulta de produtos, interagindo com o **ProdutoRepository** para persistir as alterações e garantir que as regras de negócio sejam respeitadas.
+
+Estes serviços orquestram o fluxo entre os **Controllers** da **API** e os repositórios da camada **Infrastructure**, sendo fundamentais para o cumprimento das regras de negócio definidas na camada **Domain**.
+
 ---
 
 ### **3.3 ECommerce.Domain**
