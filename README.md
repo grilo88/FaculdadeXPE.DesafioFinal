@@ -19,17 +19,19 @@ Este documento descreve a arquitetura de um sistema de E-Commerce desenvolvido c
 ## **Sumário**
 
 1. Introdução
-2. Camadas da Arquitetura
+2. Contexto
+3. Container
+4. Camadas da Arquitetura
    - ECommerce.Api
    - ECommerce.Application
    - ECommerce.Domain
    - ECommerce.Infrastructure
-3. Detalhamento de Arquivos e Funcionalidades
+5. Detalhamento de Arquivos e Funcionalidades
    - ECommerce.Api
    - ECommerce.Application
    - ECommerce.Domain
    - ECommerce.Infrastructure
-4. Conclusão
+6. Conclusão
 
 ---
 
@@ -39,13 +41,17 @@ Este trabalho tem como objetivo apresentar a estrutura de um projeto de E-Commer
 
 ---
 
-## 2. Contexto
+## **2. Contexto**
 
 ![desasfio-final-faculdade-xpe-C1](https://github.com/user-attachments/assets/e63b0a64-4ca1-4fae-8d1d-b658a890bdf0)
 
 ---
 
-## **2. Camadas da Arquitetura**
+## **3. Container**
+
+![container](https://github.com/user-attachments/assets/81383314-86f9-4cf9-aaa6-52abe6a5e09c)
+
+## **4. Camadas da Arquitetura**
 
 A arquitetura do sistema é composta pelas seguintes camadas:
 
@@ -74,9 +80,9 @@ A arquitetura do sistema é composta pelas seguintes camadas:
 
 ---
 
-## **3. Detalhamento de Arquivos e Funcionalidades**
+## **5. Detalhamento de Arquivos e Funcionalidades**
 
-### **3.1 ECommerce.Api**
+### **5.1 ECommerce.Api**
 
 A camada **ECommerce.Api** é responsável por expor os endpoints através dos controladores, utilizando o padrão MVC (Model-View-Controller) evoluído com os princípios do DDD (Domain-Driven Design). Ela recebe as requisições do cliente e orquestra o fluxo de dados, chamando a camada de **ECommerce.Application** para processar as regras de negócio.
 
@@ -104,7 +110,7 @@ A camada **ECommerce.Api** inclui os seguintes arquivos e estruturas:
 
 ---
 
-### **3.2 ECommerce.Application**
+### **5.2 ECommerce.Application**
 
 A camada **ECommerce.Application** contém as regras de negócio e a organização dos comandos e consultas (CQRS). Abaixo estão os detalhes das funcionalidades implementadas:
 
@@ -156,7 +162,7 @@ Estes serviços orquestram o fluxo entre os **Controllers** da **API** e os repo
 
 ---
 
-### **3.3 ECommerce.Domain**
+### **5.3 ECommerce.Domain**
 
 A camada **ECommerce.Domain** é a base do modelo de dados, onde são definidas as entidades, contratos e interfaces de repositórios.
 
@@ -172,7 +178,7 @@ A camada **ECommerce.Domain** é a base do modelo de dados, onde são definidas 
 
 ---
 
-### **3.4 ECommerce.Infrastructure**
+### **5.4 ECommerce.Infrastructure**
 
 A camada **ECommerce.Infrastructure** é responsável pela implementação da persistência de dados, incluindo a configuração do banco de dados, as migrations e os repositórios concretos.
 
@@ -202,6 +208,6 @@ Estes repositórios são responsáveis por abstrair a complexidade das consultas
 
 ---
 
-## **4. Conclusão**
+## **6. Conclusão**
 
 O projeto ECommerce segue as boas práticas de arquitetura de software, utilizando camadas bem definidas para garantir escalabilidade e manutenção facilitada. Cada camada tem uma responsabilidade específica, permitindo que a aplicação seja facilmente expandida no futuro. A estrutura proposta garante um bom desacoplamento entre as diferentes partes do sistema, facilitando tanto os testes quanto a evolução da aplicação.
