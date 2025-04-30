@@ -49,7 +49,7 @@ namespace ECommerce.Domain.Aggregates.Pedidos
             }
             else
             {
-                var novoItem = new PedidoItemEntity(this, produto, quantidade);
+                var novoItem = new PedidoItemEntity(0, this, produto, quantidade);
                 _itens.Add(novoItem);
             }
 

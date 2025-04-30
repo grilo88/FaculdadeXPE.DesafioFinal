@@ -33,6 +33,14 @@ namespace ECommerce.Infrastructure.Persistence
             await _dbSet.AddAsync(entity);
         }
 
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            if (entities == null || !entities.Any())
+                throw new ArgumentNullException(nameof(entities));
+
+            await _dbSet.AddRangeAsync(entities);
+        }
+
         public async Task UpdateAsync(T entity)
         {
             if (entity == null)

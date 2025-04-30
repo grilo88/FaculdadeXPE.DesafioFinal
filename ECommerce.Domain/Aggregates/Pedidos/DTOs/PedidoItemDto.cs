@@ -2,6 +2,8 @@
 {
     public class PedidoItemDto
     {
+        public int Id { get; set; } 
+
         public long ProdutoId { get; init; }
 
         public int Quantidade { get; init; }

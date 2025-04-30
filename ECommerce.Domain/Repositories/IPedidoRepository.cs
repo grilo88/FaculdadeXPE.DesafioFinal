@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Aggregates.Pedidos;
 using ECommerce.Domain.Contracts;
+using static ECommerce.Domain.Aggregates.Pedidos.PedidoEntity;
 
 namespace ECommerce.Domain.Repositories
 {

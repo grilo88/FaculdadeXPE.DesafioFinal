@@ -24,8 +24,9 @@ namespace ECommerce.Domain.Aggregates.Pedidos
 
             protected PedidoItemEntity() { }
 
-            public PedidoItemEntity(PedidoEntity pedido, ProdutoEntity produto, int quantidade)
+            public PedidoItemEntity(long id, PedidoEntity pedido, ProdutoEntity produto, int quantidade)
             {
+                Id = id;
                 Pedido = pedido;
                 PedidoId = pedido.Id;
                 Produto = produto;

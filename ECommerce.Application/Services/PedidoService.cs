@@ -29,12 +29,12 @@ namespace ECommerce.Application.Services
 
             var produtos = (await _produtoRepository.GetAllAsync()).ToList();
 
-            if (pedido.Itens != null && 
-                pedido.Itens.Any())
+            if (itens != null && 
+                itens.Any())
             {
                 var itensValidados = new List<PedidoItemEntity>();
 
-                foreach (var item in pedido.Itens)
+                foreach (var item in itens)
                 {
                     var produto = produtos.FirstOrDefault(x => x.Id == item.ProdutoId);
 
@@ -42,6 +42,7 @@ namespace ECommerce.Application.Services
                         return false;
 
                     itensValidados.Add(new PedidoItemEntity(
+                        item.Id,
                         pedido,
                         produto,
                         item.Quantidade));
@@ -65,16 +66,17 @@ namespace ECommerce.Application.Services
             var produtos = (await _produtoRepository.GetAllAsync()).ToList();
             var itensValidados = new List<PedidoItemEntity>();
 
-            if (pedido.Itens != null && 
-                pedido.Itens.Any())
+            if (itens != null && 
+                itens.Any())
             {
-                foreach (var item in pedido.Itens)
+                foreach (var item in itens)
                 {
-                    var produto = produtos.FirstOrDefault(x => x.Id == item.ProdutoId);
+                    var produto = produtos.FirstOrDefault(p => p.Id == item.ProdutoId);
                     if (produto == null)
                         return false;
 
                     itensValidados.Add(new PedidoItemEntity(
+                        item.Id,
                         pedidoExistente,
                         produto,
                         item.Quantidade));

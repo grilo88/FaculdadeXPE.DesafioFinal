@@ -3,6 +3,7 @@ using ECommerce.Domain.Repositories;
 using ECommerce.Infrastructure.Data.Contexts;
 using ECommerce.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using static ECommerce.Domain.Aggregates.Pedidos.PedidoEntity;
 
 namespace ECommerce.Infrastructure.Repositories
 {

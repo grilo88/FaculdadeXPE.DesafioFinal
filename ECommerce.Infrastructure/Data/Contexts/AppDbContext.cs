@@ -6,6 +6,7 @@ using ECommerce.Infrastructure.Data.Configurations;
 using ECommerce.Infrastructure.Data.Seeds;
 using ECommerce.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using static ECommerce.Domain.Aggregates.Pedidos.PedidoEntity;
 
 namespace ECommerce.Infrastructure.Data.Contexts
 {
@@ -25,6 +26,9 @@ namespace ECommerce.Infrastructure.Data.Contexts
         public DbSet<ProdutoEntity> Produtos { get; set; }
 
         public DbSet<PedidoEntity> Pedidos { get; set; }
+
+        public DbSet<PedidoItemEntity> ItensPedido { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
