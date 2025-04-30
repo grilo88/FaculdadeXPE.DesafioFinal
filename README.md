@@ -55,7 +55,7 @@ A arquitetura do sistema é composta pelas seguintes camadas:
 
 ### Camada Domain
 
-![Domain](https://github.com/user-attachments/assets/f5c51491-e66f-47a1-aa1e-3ea5e1f40c60)
+![ClassDiagram](https://github.com/user-attachments/assets/945178b7-1baa-47b4-bad8-e3c8b9738cc9)
 
 ### Camada Infrastructure
 
