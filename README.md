@@ -38,7 +38,7 @@ Este trabalho tem como objetivo apresentar a estrutura de um projeto de E-Commer
 
 ---
 
-# 1. Contexto
+## 2. Contexto
 
 ![desasfio-final-faculdade-xpe-C1](https://github.com/user-attachments/assets/e63b0a64-4ca1-4fae-8d1d-b658a890bdf0)
 
